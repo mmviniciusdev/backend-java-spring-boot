@@ -23,7 +23,7 @@ public class AuthorizationTransaction {
     private String transactionId;
     private int amount;
     private String currency;
-    private PaymentType paymentType;
+    private String paymentType;
     private String installment;
     private String card;
 }
