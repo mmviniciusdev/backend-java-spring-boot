@@ -10,6 +10,18 @@ public class TransactionController {
 
     @GetMapping
     public String HelloAPI(){
-        return "Desenvolvimento de Microservicos de transacoes financeiras e agenda de liquidacao";
+
+        String json = "{\n" +
+                "  \"nome\": \"Marcus Vinicius F R Castro\",\n" +
+                "  \"idade\": 37,\n" +
+                "  \"isEstudante\": true,\n" +
+                "  \"cursos\": [\"Programação\", \"Desenvolvimento\", \"Análise de Dados\"],\n" +
+                "  \"endereco\": {\n" +
+                "    \"rua\": \"Rua José Pinto de Almeida\",\n" +
+                "    \"numero\": 801,\n" +
+                "    \"cidade\": \"Piracicaba\"\n" +
+                "  }\n" +
+                "}";
+        return "Desenvolvimento de Microservicos de transacoes financeiras e agenda de liquidacao\n " + json;
     }
 }
