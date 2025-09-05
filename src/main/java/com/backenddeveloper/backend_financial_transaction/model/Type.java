@@ -1,5 +1,7 @@
 package com.backenddeveloper.backend_financial_transaction.model;
 
+import jakarta.persistence.Entity;
+
 public enum Type {
 
     CASH,
