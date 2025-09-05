@@ -3,6 +3,9 @@ package com.backenddeveloper.backend_financial_transaction.dto;
 
 import com.backenddeveloper.backend_financial_transaction.model.PaymentType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,11 +19,12 @@ import java.time.LocalDateTime;
 @Data
 public class AuthorizationResponseDTO {
 
+
     private String transactionId;
     private int amount;
     private String currency;
     private PaymentType paymentType;
     private AuthorizationPOSRequestDTOInstalment installment;
-    private AuthorizationPOSRequestDTOCard card;
+    private String card;
     private LocalDateTime timeStamp;
 }

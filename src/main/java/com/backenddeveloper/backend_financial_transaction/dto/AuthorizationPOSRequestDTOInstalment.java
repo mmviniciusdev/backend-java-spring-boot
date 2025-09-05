@@ -16,7 +16,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthorizationPOSRequestDTOInstalment {
 
-    private Long id;
     private int count;
     private Type type;
 }

@@ -15,7 +15,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthorizationPOSRequestDTOCard {
 
-
-    private Long id;
     private String pan;
 }
