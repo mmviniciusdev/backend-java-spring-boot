@@ -1,13 +1,15 @@
 package com.backenddeveloper.backend_financial_transaction.service;
 
-import com.backenddeveloper.backend_financial_transaction.dto.AuthorizationRequestTransaction;
-import com.backenddeveloper.backend_financial_transaction.dto.AuthorizationResponseDTO;
+import com.backenddeveloper.backend_financial_transaction.dto.AuthorizationRequestDTOTransaction;
 import com.backenddeveloper.backend_financial_transaction.model.AuthorizationTransaction;
 import com.backenddeveloper.backend_financial_transaction.repository.AuthorizationTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorizationTransactionService {
@@ -15,18 +17,33 @@ public class AuthorizationTransactionService {
     @Autowired
     private AuthorizationTransactionRepository repository;
 
-    public AuthorizationTransaction createAuthorization(AuthorizationRequestTransaction authorizationRequestTransaction){
-        AuthorizationTransaction authorizationTransaction = AuthorizationTransaction.builder()
-                .transactionId(authorizationRequestTransaction.getTransactionId())
-                .amount(authorizationRequestTransaction.getAmount())
-                .currency(authorizationRequestTransaction.getCurrency())
-                .paymentType(authorizationRequestTransaction.getPaymentType())
-                .installment(authorizationRequestTransaction.getInstallment())
-                .card(authorizationRequestTransaction.getCard())
+    public void createAuthorization(AuthorizationRequestDTOTransaction authorizationRequestDTOTransaction){
+
+        AuthorizationTransaction transaction = AuthorizationTransaction.builder()
+                .transactionId(authorizationRequestDTOTransaction.transactionId())
+                .installment(authorizationRequestDTOTransaction.installment())
+                .card(authorizationRequestDTOTransaction.card())
+                .paymentType(authorizationRequestDTOTransaction.paymentType())
+                .currency(authorizationRequestDTOTransaction.currency())
+                .amount(authorizationRequestDTOTransaction.amount())
                 .build();
 
-        repository.save(authorizationTransaction);
+        repository.save(transaction);
 
-        return authorizationTransaction;
+    }
+
+    public List<AuthorizationTransaction> listarTransacao(){
+        List<AuthorizationTransaction> transacao = repository.findAll();
+        return transacao;
+    }
+
+    public List<AuthorizationTransaction> listaTransacaoById(Long id) throws Exception {
+        AuthorizationTransaction autorization = new AuthorizationTransaction();
+        List<AuthorizationTransaction> transacao = repository.findAllById(Collections.singleton(id));
+        transacao.stream().filter(t-> t.getId().equals(id)).collect(Collectors.toList());
+
+        return transacao;
+
+
     }
 }
